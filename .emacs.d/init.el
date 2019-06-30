@@ -33,14 +33,16 @@
 
 ;; hide visual clutter
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+(when (display-graphic-p)
+  (scroll-bar-mode -1))
 (tool-bar-mode -1)
 
 ;; highlight current line
 (global-hl-line-mode +1)
 ;; line numbers
 (line-number-mode +1)
-(global-display-line-numbers-mode 1)
+(when (display-graphic-p)
+  (global-display-line-numbers-mode 1))
 (column-number-mode t)
 ;; file size in mode line
 (size-indication-mode t)
@@ -70,6 +72,7 @@
 
 ;; theme
 (use-package solarized-theme
+  :ensure t
   :config
   (load-theme 'solarized-light t))
 
@@ -105,6 +108,7 @@
 ;; parenthesis management
 (use-package smartparens
   :ensure t
+  :if window-system
   :diminish smartparens-mode
   :config
   (progn
@@ -207,12 +211,14 @@
   (setq projectile-git-submodule-command "git submodule --quiet foreach 'echo $path' 2>/dev/null | tr '\\n' '\\0'")
 )
 (use-package helm-projectile
+  :if window-system
   :ensure t
   :config
   (helm-projectile-on))
 
 ;; scrollbar
 (use-package yascroll
+  :ensure t
   :init
   (require 'cl)
   :config
@@ -310,15 +316,18 @@
 
 ;; named frames for projects
 ;; open projects in new frames
-(use-package nameframe)
+(use-package nameframe
+  :ensure t)
 (use-package nameframe-projectile
+  :ensure t
   :config
   (nameframe-projectile-mode t)
   (global-set-key (kbd "M-P") 'nameframe-switch-frame))
 
 ;; window resize and move
 ;; shift + arrow to switch moves
-(use-package windresize)
+(use-package windresize
+  :ensure t)
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
@@ -340,6 +349,7 @@
 
 ;; yaml
 (use-package yaml-mode
+  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
   (add-to-list 'auto-mode-alist '("\\.yml.j2\\'" . yaml-mode))
@@ -359,17 +369,21 @@
   :bind (("C-}" . diff-hl-next-hunk)
          ("C-{" . diff-hl-previous-hunk)))
 
+;; move text
+;; M-<up> M-<down>
+(use-package move-text
+  :ensure t
+  :config
+  (move-text-default-bindings))
+
 ;; mac settings
-;; this is to allow us to use eslint
 (when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize)
   (setq mac-command-modifier 'meta))
 
 ;; misc mappings
 ;;
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
-(move-text-default-bindings) ;; M-<up> M-<down>
 ;; unset keys
 (dolist (key '("\M-c" "\C-z"))
   (global-unset-key key))

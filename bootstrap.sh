@@ -1,4 +1,1 @@
-#!/bin/sh
-
-echo symlink emacs config
-ln -s -i -d ./.emacs.d ~/.emacs.d
+ln -s ~/dev/dotfiles/.emacs.d/init.el ~/.emacs.d/init.el
