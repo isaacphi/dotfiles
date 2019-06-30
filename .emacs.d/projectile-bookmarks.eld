@@ -1,0 +1,1 @@
+("~/dev/THM/" "~/dev/thm/" "~/dev/fe-thm/" "~/Nextcloud/Notes/" "~/dev/ingestion-service/" "~/dev/fe-libraries/" "~/dev/boilerplate-service/" "~/dev/scratch/content_ingestion/" "~/dev/billing-service/" "~/dev/kong-config/" "~/dev/th-message-broker-client/" "~/dev/attribute-service/" "~/dev/fe-community/" "~/dev/emacsConfig/")

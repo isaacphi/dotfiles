@@ -1,0 +1,108 @@
+((("magit-status" .
+   [1 0 0 0 0 0 0 0 0 0 0 0])
+  ("package-enable-at-startup" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
+  ("package" .
+   [1 0 0 0 0 0 0])
+  ("user-mail-address" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("user-full-name" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("setq" .
+   [2 0 0 0])
+  ("py" .
+   [1 0])
+  ("aws" .
+   [1 0 0])
+  ("helpers" .
+   [1 0 0 0 0 0 0])
+  ("base" .
+   [1 0 0 0])
+  ("API_KEY" .
+   [1 0 0 0 0 0 0])
+  ("rjsx-mode" .
+   [1 0 0 0 0 0 0 0 0])
+  ("sgml-basic-offset" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("js-indent-level" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("models" .
+   [1 0 0 0 0 0])
+  ("markdown" .
+   [1 0 0 0 0 0 0 0])
+  ("lambda" .
+   [1 0 0 0 0 0])
+  ("define-key" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("markdown-mode-map" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("kbd" .
+   [1 0 0])
+  ("nil" .
+   [2 0 0])
+  ("projectile-mode" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])
+  ("projectile-mode-map" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("neo-smart-open" .
+   [0 0 0 0 0 0 0 0 2 0 0 0 0 0])
+  ("ac-use-menu-map" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("helm-boring-file-regexp-list" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("defvar" .
+   [1 0 0 0 0 0])
+  ("helm-ff-skip-boring-files" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("diff-hl-fringe-spec" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("diff-hl-fringe-bmp-function" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("page" .
+   [10 0 0 0])
+  ("forms" .
+   [1 0 0 0 0])
+  ("require" .
+   [2 0 0 0 0 0 0])
+  ("required" .
+   [1 0 0 0 0 0 0 0])
+  ("label" .
+   [1 0 0 0 0])
+  ("page_title" .
+   [8 0 0 0 0 0 0 0 0 0])
+  ("title" .
+   [3 0 0 0 0])
+  ("Non" .
+   [2 0 0])
+  ("zipped" .
+   [1 0 0 0 0 0])
+  ("long_task_id" .
+   [1 0 0 0 0 0 0 0 0 0 0 0])
+  ("xml_file" .
+   [1 0 0 0 0 0 0 0])
+  ("text" .
+   [12 0 0 0])
+  ("PAGE_CONTENT_UPLOADED_FOR_INGESTION" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("rollover" .
+   [2 0 0 0 0 0 0 0])
+  ("defn" .
+   [1 0 0 0])
+  ("pytest" .
+   [1 0 0 0 0 0])
+  ("TextBlock" .
+   [1 0 0 0 0 0 0 0 0])
+  ("snapshot" .
+   [2 0 0 0 0 0 0 0])
+  ("text_block" .
+   [3 0 0 0 0 0 0 0 0 0])
+  ("append" .
+   [2 0 0 0 0 0])
+  ("block" .
+   [4 0 0 0 0])
+  ("text_block2" .
+   [3 0 0 0 0 0 0 0 0 0 0])
+  ("style" .
+   [1 0 0 0 0])
+  ("styles" .
+   [2 0 0 0 0 0])))
