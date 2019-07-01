@@ -161,8 +161,9 @@
 
 ;; git
 (use-package magit
-             :bind (("C-x g" . magit-status)
-                    ("C-M-g" . magit-status)))
+  :ensure t
+  :bind (("C-x g" . magit-status)
+         ("C-M-g" . magit-status)))
 
 ;; helm: dwim autocomplete
 (use-package helm
@@ -338,7 +339,7 @@
          ("M-g j" . dumb-jump-go)
          ("M-g i" . dumb-jump-go-prompt))
   :config (setq dumb-jump-selector 'helm)
-  :ensure)
+  :ensure t)
 
 ;; subword movement
 (global-subword-mode)
@@ -367,6 +368,7 @@
 
 ;; diff in sidebar
 (use-package diff-hl
+  :ensure t
   :config
   (global-diff-hl-mode 1)
   :bind (("C-}" . diff-hl-next-hunk)
