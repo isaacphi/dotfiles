@@ -393,7 +393,8 @@
 
 ;; mac settings
 (when (memq window-system '(mac ns))
-  (setq mac-command-modifier 'meta))
+  (setq mac-command-modifier 'meta)
+  (add-to-list 'exec-path "/usr/local/bin/"))
 
 ;; misc mappings
 ;;
