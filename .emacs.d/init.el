@@ -277,7 +277,9 @@
           treemacs-tag-follow-cleanup            t
           treemacs-tag-follow-delay              1.5)
 
-    (treemacs-resize-icons 44)
+    (if (memq window-system '(mac ns))
+      (treemacs-resize-icons 44)
+      (treemacs-resize-icons 22))
 
     (treemacs-follow-mode t)
     (treemacs-filewatch-mode t)
@@ -309,6 +311,14 @@
 (use-package treemacs-magit
   :after treemacs magit
   :ensure t)
+
+;; spice
+;; todo: add ngspice to the spice-simulator-alist variable
+(use-package spice-mode
+  :ensure t
+  :mode "\\.sp\\'"
+  :config
+  (setq spice-simulator "ngspice"))
 
 ;; markdown
 ;; disable M-p because it conflicts with projectile
@@ -476,8 +486,8 @@
     ("a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
  '(package-selected-packages
    (quote
-    (helm-mt multi-term avy which-key crux smartparens diminish smart-mode-line-powerline-theme doom-themes use-package yascroll yaml-imenu xref-js2 windresize web-mode spotify solarized-theme smooth-scrolling smooth-scroll rust-mode rjsx-mode prettier-js neotree nameframe-projectile
-             (custom-set-faces)))))
+    (spice-mode helm-mt multi-term avy which-key crux smartparens diminish smart-mode-line-powerline-theme doom-themes use-package yascroll yaml-imenu xref-js2 windresize web-mode spotify solarized-theme smooth-scrolling smooth-scroll rust-mode rjsx-mode prettier-js neotree nameframe-projectile
+                (custom-set-faces)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
