@@ -61,9 +61,6 @@
       scroll-conservatively 100000
       scroll-preserve-screen-position 1)
 
-;; font
-(set-frame-font "Hack 12" nil t)
-
 ;; disable bell
 (use-package doom-themes
   :ensure t
