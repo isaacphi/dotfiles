@@ -379,6 +379,25 @@
   :bind (("C-}" . diff-hl-next-hunk)
          ("C-{" . diff-hl-previous-hunk)))
 
+;; Javascript + jsx
+(use-package web-mode
+  :ensure t
+  :mode ("\\.html?\\'"
+         "/themes/.*\\.php?\\'"
+         "/\\(components\\|containers\\|src\\)/.*\\.js[x]?\\'"
+         "\\.\\(handlebars\\|hbs\\)\\'")
+  :config (progn
+            (setq
+             web-mode-enable-auto-closing t
+             web-mode-enable-auto-opening t
+             web-mode-enable-auto-pairing t
+             web-mode-enable-auto-indentation t
+             web-mode-enable-auto-quoting t
+             web-mode-enable-current-column-highlight t
+             web-mode-enable-current-element-highlight t
+             web-mode-content-types-alist
+             '(("jsx" . "/\\(components\\|containers\\|src\\)/.*\\.js[x]?\\'")))))
+
 ;; move text
 ;; M-<up> M-<down>
 (use-package move-text
@@ -415,64 +434,6 @@
 ;; M-x customize-group lets you customize plugins
 ;; use helm-mark-ring and helm-all-mark-rings, also use helm-bookmarks
 ;; (setq debug-on-error t) ;; Display errors
-
-
-
-;; OLD STUFF
-
-;; ;; syntax checks
-;; ;;
-;; ;; mostly from http://codewinds.com/blog/2015-04-02-emacs-flycheck-eslint-jsx.html
-;; (require 'flycheck)
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
-;; ;; disable jshint since we prefer eslint checking
-;; (setq-default flycheck-disabled-checkers
-;;   (append flycheck-disabled-checkers
-;;     '(javascript-jshint)))
-;; (flycheck-add-mode 'javascript-eslint 'web-mode)
-;; (setq-default flycheck-temp-prefix ".flycheck")
-;; ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
-;; (defun my/use-eslint-from-node-modules ()
-;;   "Use eslint in the local node_modules."
-;;   (let* ((root (locate-dominating-file
-;;                 (or (buffer-file-name) default-directory)
-;;                 "node_modules"))
-;;          (eslint (and root
-;;                       (expand-file-name "node_modules/eslint/bin/eslint.js"
-;;                                         root))))
-;;     (when (and eslint (file-executable-p eslint))
-;;       (setq-local flycheck-javascript-eslint-executable eslint))))
-;; (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
-;; (add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
-
-;; ;; python
-;; ;;
-;; (elpy-enable)
-
-;; ;; javascript
-;; ;;
-;; (require 'js2-mode)
-;; (require 'js2-refactor)
-;; (require 'xref-js2)
-;; (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-;; (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
-;; (add-hook 'js2-mode-hook #'js2-refactor-mode)
-;; (js2r-add-keybindings-with-prefix "C-c C-r")
-;; (define-key js2-mode-map (kbd "C-k") #'js2r-kill)
-;; ;; js-mode (which js2 is based on) binds "M-." which conflicts with xref, so unbind it.
-;; (define-key js-mode-map (kbd "M-.") nil)
-;; (add-hook 'js2-mode-hook (lambda ()
-;;   (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
-;; (setq-default indent-tabs-mode nil)
-;; (setq-default js2-basic-offset 4)
-;; (setq-default js-indent-level 4)
-;; (setq-default sgml-basic-offset 4)
-;; (eval-after-load 'rjsx-mode
-;;     '(progn
-;;        (add-hook 'rjsx-mode-hook #'add-node-modules-path)
-;;        (add-hook 'after-save-hook 'eslint-fix nil t)))
-;; (eval-after-load 'js2-mode
-;;     '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 
 
 ;;; init.el ends here
