@@ -96,7 +96,8 @@
               indent-tabs-mode nil)
 
 ;; remove extra whitespace on save
-(add-hook 'before-save-hook 'whitespace-cleanup)
+;; (add-hook 'before-save-hook 'whitespace-cleanup)
+;; (remove-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; hide minor modes from mode line
 (use-package diminish
@@ -141,6 +142,10 @@
   ("C-_" . avy-goto-char)
   :config
   (setq avy-background t))
+
+;; terraform
+(use-package terraform-mode
+  :ensure t)
 
 ;; auto complete
 (use-package company
@@ -384,6 +389,20 @@
   :bind (("C-}" . diff-hl-next-hunk)
          ("C-{" . diff-hl-previous-hunk)))
 
+;; Prettier
+(use-package prettier-js
+  :ensure t
+  :config
+  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'web-mode-hook 'prettier-js-mode))
+
+(use-package add-node-modules-path
+  :ensure t)
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
 ;; Javascript + jsx
 (use-package web-mode
   :ensure t
@@ -392,6 +411,8 @@
          "/\\(components\\|containers\\|src\\)/.*\\.js[x]?\\'"
          "\\.\\(handlebars\\|hbs\\)\\'")
   :config (progn
+            (add-hook 'web-mode-hook #'add-node-modules-path)
+            (add-hook 'web-mode-hook #'prettier-js-mode)
             (setq
              web-mode-enable-auto-closing t
              web-mode-enable-auto-opening t
@@ -452,14 +473,15 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("d91ef4e714f05fff2070da7ca452980999f5361209e679ee988e3c432df24347" "0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" "a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
+    ("c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "d91ef4e714f05fff2070da7ca452980999f5361209e679ee988e3c432df24347" "0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" "a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
  '(package-selected-packages
    (quote
-    (dockerfile-mode helm-ag django-mode arduino-mode transpose-frame markdown-mode helm-mt multi-term avy which-key crux smartparens diminish smart-mode-line-powerline-theme doom-themes use-package yascroll yaml-imenu xref-js2 windresize web-mode spotify solarized-theme smooth-scrolling smooth-scroll rust-mode rjsx-mode prettier-js neotree nameframe-projectile
-                     (custom-set-faces)))))
+    (exec-path-from-shell add-node-modules-path terraform-mode dockerfile-mode helm-ag django-mode arduino-mode transpose-frame markdown-mode helm-mt multi-term avy which-key crux smartparens diminish smart-mode-line-powerline-theme doom-themes use-package yascroll yaml-imenu xref-js2 windresize web-mode spotify solarized-theme smooth-scrolling smooth-scroll rust-mode rjsx-mode prettier-js neotree nameframe-projectile
+                          (custom-set-faces)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'upcase-region 'disabled nil)

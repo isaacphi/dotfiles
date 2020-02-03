@@ -31,3 +31,9 @@ fpath=($fpath "/home/phil/.zfunctions")
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 prompt spaceship
+
+export PATH="/home/phil/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+export PATH="/home/phil/src/:$PATH"
