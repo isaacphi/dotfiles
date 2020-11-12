@@ -416,7 +416,7 @@
   :ensure t
   :mode ("\\.html?\\'"
          "/themes/.*\\.php?\\'"
-         "/\\(components\\|ducks\\|containers\\|src\\)/.*\\.js[x]?\\'"
+         "/\\(components\\|ducks\\|containers\\|src\\)/.*\\.[tj]s[x]?\\'"
          "\\.\\(handlebars\\|hbs\\)\\'")
   :config (progn
             (add-hook 'web-mode-hook #'add-node-modules-path)
@@ -487,8 +487,8 @@
     ("00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "229c5cf9c9bd4012be621d271320036c69a14758f70e60385e87880b46d60780" "7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "1c8171893a9a0ce55cb7706766e57707787962e43330d7b0b6b0754ed5283cda" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "d91ef4e714f05fff2070da7ca452980999f5361209e679ee988e3c432df24347" "0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" "a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
  '(package-selected-packages
    (quote
-    (exec-path-from-shell add-node-modules-path terraform-mode dockerfile-mode helm-ag django-mode arduino-mode transpose-frame markdown-mode helm-mt multi-term avy which-key crux smartparens diminish smart-mode-line-powerline-theme doom-themes use-package yascroll yaml-imenu xref-js2 windresize web-mode spotify solarized-theme smooth-scrolling smooth-scroll rust-mode rjsx-mode prettier-js neotree nameframe-projectile
-                          (custom-set-faces)))))
+    (python-black exec-path-from-shell add-node-modules-path terraform-mode dockerfile-mode helm-ag django-mode arduino-mode transpose-frame markdown-mode helm-mt multi-term avy which-key crux smartparens diminish smart-mode-line-powerline-theme doom-themes use-package yascroll yaml-imenu xref-js2 windresize web-mode spotify solarized-theme smooth-scrolling smooth-scroll rust-mode rjsx-mode prettier-js neotree nameframe-projectile
+                  (custom-set-faces)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

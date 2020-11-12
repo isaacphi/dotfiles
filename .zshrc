@@ -30,3 +30,7 @@ fpath=($fpath "/home/phil/.zfunctions")
 eval "$(starship init zsh)"
 
 export PATH="/home/phil/src/:$PATH"
+
+export PATH="/home/phil/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
