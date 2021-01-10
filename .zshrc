@@ -18,8 +18,6 @@ export PATH=~/src/todo:$PATH
 alias t="todo.sh -d /home/phil/.todo.cfg"
 alias nord="nordvpn"
 
-# plugins=(virtualenv)
-
 # ZSH_THEME=robbyrussell
 
 export NVM_DIR="$HOME/.nvm"
@@ -27,9 +25,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fpath=($fpath "/home/$USER/.zfunctions")
 
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
+# Set starship ZSH as a prompt
+eval "$(starship init zsh)"
+
+export PATH="/home/phil/src/:$PATH"
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
@@ -37,4 +36,3 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="/home/$USER/src/:$PATH"
 export PATH="/home/$USER/.pyenv/bin:$PATH"
 fpath=($fpath "/home/$USER/.zfunctions")
-
