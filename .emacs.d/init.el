@@ -40,10 +40,11 @@
 ;; highlight current line
 (global-hl-line-mode +1)
 ;; line numbers
-(line-number-mode +1)
-(when (display-graphic-p)
-  (global-display-line-numbers-mode 1))
+;; (line-number-mode +1)
+;; (when (display-graphic-p)
+  ;; (global-display-line-numbers-mode 1))
 (column-number-mode t)
+
 ;; file size in mode line
 (size-indication-mode t)
 
@@ -57,9 +58,27 @@
        "%b"))))
 
 ;; scroll behaviour
-(setq scroll-margin 0
-      scroll-conservatively 100000
-      scroll-preserve-screen-position 1)
+(setq redisplay-dont-pause t
+  scroll-margin 1
+  scroll-step 1
+  scroll-conservatively 10000
+  scroll-preserve-screen-position 1)
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ; one line at a time
+(setq mouse-wheel-progressive-speed nil)            ; don't accelerate scrolling
+(setq-default smooth-scroll-margin 0)
+(setq scroll-step 1
+      scroll-margin 1
+      scroll-conservatively 100000)
+(pixel-scroll-mode)
+
+;; scrollbar
+(use-package yascroll
+  :ensure t
+  :init
+  (require 'cl)
+  :config
+  (global-yascroll-bar-mode))
 
 ;; disable bell
 (use-package doom-themes
@@ -67,17 +86,21 @@
   :config
   (doom-themes-visual-bell-config))
 
-;; theme
+;; solarized themes and set default
 (use-package solarized-theme
   :ensure t
   :config
-  (load-theme 'solarized-light t))
+  (load-theme 'solarized-dark t))
 
 ;; mode line
 (use-package smart-mode-line
   :ensure t
   :config
   (add-hook 'after-init-hook 'sml/setup))
+
+;; hide minor modes from mode line
+(use-package diminish
+  :ensure t)
 
 ;; put temporary files in one directory
 (setq backup-directory-alist
@@ -104,10 +127,6 @@
 ;; remove extra whitespace on save
 ;; (add-hook 'before-save-hook 'whitespace-cleanup)
 ;; (remove-hook 'before-save-hook 'whitespace-cleanup)
-
-;; hide minor modes from mode line
-(use-package diminish
-  :ensure t)
 
 ;; parenthesis management
 (use-package smartparens
@@ -148,12 +167,6 @@
   ("C-_" . avy-goto-char)
   :config
   (setq avy-background t))
-
-;; terraform
-(use-package terraform-mode
-  :ensure t
-  :config
-  )
 
 ;; auto complete
 (use-package company
@@ -226,14 +239,6 @@
   :ensure t
   :config
   (helm-projectile-on))
-
-;; scrollbar
-(use-package yascroll
-  :ensure t
-  :init
-  (require 'cl)
-  :config
-  (global-yascroll-bar-mode))
 
 ;; Comment current line override
 (defun comment-dwim-line (&optional arg)
@@ -317,6 +322,12 @@
   :config
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 
+;; terraform
+(use-package terraform-mode
+  :ensure t
+  :config
+  )
+
 (use-package treemacs-projectile
   :after treemacs projectile
   :ensure t)
@@ -336,7 +347,27 @@
   :ensure t
   :config
   (eval-when-compile (defvar markdown-mode-map))
-  (add-hook 'markdown-mode-hook (lambda () (define-key markdown-mode-map (kbd "M-p") nil))))
+  (add-hook
+   'markdown-mode-hook
+   (lambda ()
+     (define-key markdown-mode-map (kbd "M-p") nil)
+     (define-key markdown-mode-map (kbd "C-v") nil)
+     (define-key markdown-mode-map (kbd "M-v") nil)
+     )))
+
+;; Makefile
+;; disable M-p because it conflicts with projectile
+(use-package make-mode
+  :ensure t
+  :config
+  (eval-when-compile (defvar makefile-mode-map))
+  (add-hook
+   'makefile-mode-hook
+   (lambda ()
+     (define-key makefile-mode-map (kbd "M-p") nil)
+     (define-key makefile-mode-map (kbd "C-v") nil)
+     (define-key makefile-mode-map (kbd "M-v") nil)
+     )))
 
 ;; named frames for projects
 ;; open projects in new frames
@@ -459,6 +490,15 @@
 ;;
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
+
+(global-set-key (kbd "C-M-n") 'forward-paragraph)
+(global-set-key (kbd "C-M-p") 'backward-paragraph)
+
+(global-set-key (kbd "M-P") 'windmove-up)
+(global-set-key (kbd "M-N") 'windmove-down)
+(global-set-key (kbd "M-B") 'windmove-left)
+(global-set-key (kbd "M-F") 'windmove-right)
+
 ;; unset keys
 (dolist (key '("\M-c" "\C-z"))
   (global-unset-key key))
@@ -469,7 +509,6 @@
 
 ;; NOTES
 ;;
-;; there's a spotify plugin!
 ;; C-x C-e excecutes previous lisp command
 ;; C-x z is redo
 ;; M-x customize-group lets you customize plugins
@@ -484,12 +523,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("bf387180109d222aee6bb089db48ed38403a1e330c9ec69fe1f52460a8936b66" "e074be1c799b509f52870ee596a5977b519f6d269455b84ed998666cf6fc802a" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "229c5cf9c9bd4012be621d271320036c69a14758f70e60385e87880b46d60780" "7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "1c8171893a9a0ce55cb7706766e57707787962e43330d7b0b6b0754ed5283cda" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "d91ef4e714f05fff2070da7ca452980999f5361209e679ee988e3c432df24347" "0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" "a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
+   '("bf387180109d222aee6bb089db48ed38403a1e330c9ec69fe1f52460a8936b66" "e074be1c799b509f52870ee596a5977b519f6d269455b84ed998666cf6fc802a" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "229c5cf9c9bd4012be621d271320036c69a14758f70e60385e87880b46d60780" "7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "1c8171893a9a0ce55cb7706766e57707787962e43330d7b0b6b0754ed5283cda" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "d91ef4e714f05fff2070da7ca452980999f5361209e679ee988e3c432df24347" "0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" "a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
  '(package-selected-packages
-   (quote
-    (python-black exec-path-from-shell add-node-modules-path terraform-mode dockerfile-mode helm-ag django-mode arduino-mode transpose-frame markdown-mode helm-mt multi-term avy which-key crux smartparens diminish smart-mode-line-powerline-theme doom-themes use-package yascroll yaml-imenu xref-js2 windresize web-mode spotify solarized-theme smooth-scrolling smooth-scroll rust-mode rjsx-mode prettier-js neotree nameframe-projectile
-                  (custom-set-faces)))))
+   '(makefile-mode python-black exec-path-from-shell add-node-modules-path terraform-mode dockerfile-mode helm-ag django-mode arduino-mode transpose-frame markdown-mode helm-mt multi-term avy which-key crux smartparens diminish smart-mode-line-powerline-theme doom-themes use-package yascroll yaml-imenu xref-js2 windresize web-mode spotify solarized-theme smooth-scrolling smooth-scroll rust-mode rjsx-mode prettier-js neotree nameframe-projectile
+                   (custom-set-faces))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
