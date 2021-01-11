@@ -314,13 +314,25 @@
         ("C-x t C-t" . treemacs-find-file)
         ("C-x t M-t" . treemacs-find-tag)))
 
+;; arduino
 (use-package arduino-mode
   :ensure t)
 
+;; dockerfile
 (use-package dockerfile-mode
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+
+;; LSP mode
+(use-package lsp-mode :ensure t)
+(use-package lsp-dart
+  :ensure t
+  :hook (dart-mode . lsp))
+(use-package lsp-ui :ensure t) ;; UI for LSP
+
+;; Flutter/Dart
+(use-package hover :ensure t) ;; run app from desktop without emulator
 
 ;; terraform
 (use-package terraform-mode

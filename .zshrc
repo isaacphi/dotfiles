@@ -24,6 +24,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fpath=($fpath "/home/$USER/.zfunctions")
 
+# android studio
+export PATH="/home/$USER/src/android-studio/bin:$PATH"
+
 # pyenv
 export PATH="/home/$USER/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
