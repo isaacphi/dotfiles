@@ -362,6 +362,7 @@
   (add-hook
    'markdown-mode-hook
    (lambda ()
+     (toggle-word-wrap)
      (define-key markdown-mode-map (kbd "M-p") nil)
      (define-key markdown-mode-map (kbd "C-v") nil)
      (define-key markdown-mode-map (kbd "M-v") nil)
