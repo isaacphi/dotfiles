@@ -127,6 +127,7 @@
 ;; remove extra whitespace on save
 ;; (add-hook 'before-save-hook 'whitespace-cleanup)
 ;; (remove-hook 'before-save-hook 'whitespace-cleanup)
+(setq whitespace-line-column 120)
 
 ;; parenthesis management
 (use-package smartparens
@@ -186,7 +187,14 @@
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)
-         ("C-M-g" . magit-status)))
+         ("C-M-g" . magit-status))
+  :config
+  (eval-when-compile (defvar magit-mode-map))
+  (add-hook
+   'magit-mode-hook
+   (lambda ()
+     (define-key magit-mode-map (kbd "M-p") nil)
+     )))
 
 ;; helm: dwim autocomplete
 (use-package helm
