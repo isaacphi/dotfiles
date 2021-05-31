@@ -27,8 +27,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fpath=($fpath "/home/$USER/.zfunctions")
 
-# android studio
+# android studio and flutter
 export PATH="/home/$USER/src/android-studio/bin:$PATH"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # pyenv
 export PATH="/home/$USER/.pyenv/bin:$PATH"
