@@ -33,6 +33,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # pyenv
 export PATH="/home/$USER/.pyenv/bin:$PATH"
+export PATH="/home/$USER/.pyenv/shims:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
