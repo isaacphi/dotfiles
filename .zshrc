@@ -54,3 +54,4 @@ zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
 
 export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/src/platform-tools:$PATH"
