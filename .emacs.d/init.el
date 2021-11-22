@@ -562,7 +562,7 @@
 
 ;; Rust
 (use-package rust-mode
-  :ensure t
+  :ensure t)
 
 ;; (use-package js2-mode
 (use-package rjsx-mode
