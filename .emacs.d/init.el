@@ -8,6 +8,8 @@
 (setq user-full-name "phil"
       user-mail-address "isaac.phil@gmail.com")
 
+(set-face-attribute 'default nil :height 100)
+
 ;; memory limit for garbage collection
 (setq gc-cons-threshold 50000000)
 ;; large file warning size
@@ -541,6 +543,11 @@
              web-mode-enable-current-element-highlight t
              web-mode-content-types-alist
              '(("jsx" . "/\\(components\\|containers\\|src\\)/.*\\.js[x]?\\'")))))
+
+;; Rust
+(use-package rust-mode
+  :ensure t
+  )
 
 ;; move text
 ;; M-<up> M-<down>
